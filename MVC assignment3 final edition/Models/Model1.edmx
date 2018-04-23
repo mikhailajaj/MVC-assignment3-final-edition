@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_employeesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="employee_status" Type="varchar" MaxLength="40" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="employeeName" Type="varchar" MaxLength="50" />
+          <Property Name="employeeAge" Type="int" />
+          <Property Name="salary" Type="float" />
+          <Property Name="bouns" Type="float" />
+          <Property Name="rate" Type="float" />
+          <Property Name="hoursWorked" Type="float" />
+        </EntityType>
+        <EntityType Name="tbl_status">
+          <Key>
+            <PropertyRef Name="employee_status" />
+          </Key>
+          <Property Name="employee_status" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_vehicle">
+          <Key>
+            <PropertyRef Name="plateNumber" />
+          </Key>
+          <Property Name="id" Type="int" />
+          <Property Name="plateNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="make" Type="varchar" MaxLength="20" />
+          <Property Name="model" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="fk_employee_status">
+          <End Role="tbl_status" Type="Self.tbl_status" Multiplicity="0..1" />
+          <End Role="tbl_employee" Type="Self.tbl_employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_status">
+              <PropertyRef Name="employee_status" />
+            </Principal>
+            <Dependent Role="tbl_employee">
+              <PropertyRef Name="employee_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vehicle_employee">
+          <End Role="tbl_employee" Type="Self.tbl_employee" Multiplicity="0..1" />
+          <End Role="tbl_vehicle" Type="Self.tbl_vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_vehicle">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_employeesModelStoreContainer">
+          <EntitySet Name="tbl_employee" EntityType="Self.tbl_employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_status" EntityType="Self.tbl_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_vehicle" EntityType="Self.tbl_vehicle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_employee_status" Association="Self.fk_employee_status">
+            <End Role="tbl_status" EntitySet="tbl_status" />
+            <End Role="tbl_employee" EntitySet="tbl_employee" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vehicle_employee" Association="Self.fk_vehicle_employee">
+            <End Role="tbl_employee" EntitySet="tbl_employee" />
+            <End Role="tbl_vehicle" EntitySet="tbl_vehicle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_employeesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="employee_status" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="employeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employeeAge" Type="Int32" />
+          <Property Name="salary" Type="Double" />
+          <Property Name="bouns" Type="Double" />
+          <Property Name="rate" Type="Double" />
+          <Property Name="hoursWorked" Type="Double" />
+          <NavigationProperty Name="tbl_status" Relationship="Self.fk_employee_status" FromRole="tbl_employee" ToRole="tbl_status" />
+          <NavigationProperty Name="tbl_vehicle" Relationship="Self.fk_vehicle_employee" FromRole="tbl_employee" ToRole="tbl_vehicle" />
+        </EntityType>
+        <EntityType Name="tbl_status">
+          <Key>
+            <PropertyRef Name="employee_status" />
+          </Key>
+          <Property Name="employee_status" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_employee" Relationship="Self.fk_employee_status" FromRole="tbl_status" ToRole="tbl_employee" />
+        </EntityType>
+        <EntityType Name="tbl_vehicle">
+          <Key>
+            <PropertyRef Name="plateNumber" />
+          </Key>
+          <Property Name="id" Type="Int32" />
+          <Property Name="plateNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="make" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="model" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_employee" Relationship="Self.fk_vehicle_employee" FromRole="tbl_vehicle" ToRole="tbl_employee" />
+        </EntityType>
+        <Association Name="fk_employee_status">
+          <End Role="tbl_status" Type="Self.tbl_status" Multiplicity="0..1" />
+          <End Role="tbl_employee" Type="Self.tbl_employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_status">
+              <PropertyRef Name="employee_status" />
+            </Principal>
+            <Dependent Role="tbl_employee">
+              <PropertyRef Name="employee_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vehicle_employee">
+          <End Role="tbl_employee" Type="Self.tbl_employee" Multiplicity="0..1" />
+          <End Role="tbl_vehicle" Type="Self.tbl_vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tbl_vehicle">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_employeesEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_employee" EntityType="Self.tbl_employee" />
+          <EntitySet Name="tbl_status" EntityType="Self.tbl_status" />
+          <EntitySet Name="tbl_vehicle" EntityType="Self.tbl_vehicle" />
+          <AssociationSet Name="fk_employee_status" Association="Self.fk_employee_status">
+            <End Role="tbl_status" EntitySet="tbl_status" />
+            <End Role="tbl_employee" EntitySet="tbl_employee" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vehicle_employee" Association="Self.fk_vehicle_employee">
+            <End Role="tbl_employee" EntitySet="tbl_employee" />
+            <End Role="tbl_vehicle" EntitySet="tbl_vehicle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_employeesModelStoreContainer" CdmEntityContainer="db_employeesEntities1">
+          <EntitySetMapping Name="tbl_employee">
+            <EntityTypeMapping TypeName="db_employeesModel.tbl_employee">
+              <MappingFragment StoreEntitySet="tbl_employee">
+                <ScalarProperty Name="employee_status" ColumnName="employee_status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+                <ScalarProperty Name="employeeAge" ColumnName="employeeAge" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="bouns" ColumnName="bouns" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="hoursWorked" ColumnName="hoursWorked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_status">
+            <EntityTypeMapping TypeName="db_employeesModel.tbl_status">
+              <MappingFragment StoreEntitySet="tbl_status">
+                <ScalarProperty Name="employee_status" ColumnName="employee_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_vehicle">
+            <EntityTypeMapping TypeName="db_employeesModel.tbl_vehicle">
+              <MappingFragment StoreEntitySet="tbl_vehicle">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="plateNumber" ColumnName="plateNumber" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="model" ColumnName="model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

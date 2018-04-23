@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    
+    <div id="messageId" ></div>
+    <div>
+        @Html.Raw(ViewBag.message)
+        <br />
+        @Html.ActionLink("Create/edit/delete", "../tbl_employee")
+    </div>
+    <script>
+        var message = ;
+        document.getElementById('messageid').textContent = message;
+    </script>
+</body>
+</html>
