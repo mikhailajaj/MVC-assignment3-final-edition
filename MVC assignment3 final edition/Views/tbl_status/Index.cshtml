@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MVC_assignment3_final_edition.Models.tbl_status>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.employee_status }) |
+                @Html.ActionLink("Details", "Details", new { id=item.employee_status }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.employee_status })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

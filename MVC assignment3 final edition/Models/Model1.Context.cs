@@ -28,5 +28,7 @@ namespace MVC_assignment3_final_edition.Models
         public virtual DbSet<tbl_employee> tbl_employee { get; set; }
         public virtual DbSet<tbl_status> tbl_status { get; set; }
         public virtual DbSet<tbl_vehicle> tbl_vehicle { get; set; }
+
+        public System.Data.Entity.DbSet<MVC_assignment3_final_edition.Models.FtEmployee> FtEmployees { get; set; }
     }
 }

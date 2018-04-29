@@ -120,8 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FtEmployeesController.cs" />
     <Compile Include="Controllers\homeController.cs" />
     <Compile Include="Controllers\tbl_employeeController.cs" />
+    <Compile Include="Controllers\tbl_statusController.cs" />
+    <Compile Include="Controllers\tbl_vehicleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,6 +175,21 @@
     <Content Include="Views\tbl_employee\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\home\Index.cshtml" />
+    <Content Include="Views\FtEmployees\Create.cshtml" />
+    <Content Include="Views\FtEmployees\Delete.cshtml" />
+    <Content Include="Views\FtEmployees\Details.cshtml" />
+    <Content Include="Views\FtEmployees\Edit.cshtml" />
+    <Content Include="Views\FtEmployees\Index.cshtml" />
+    <Content Include="Views\tbl_status\Create.cshtml" />
+    <Content Include="Views\tbl_status\Delete.cshtml" />
+    <Content Include="Views\tbl_status\Details.cshtml" />
+    <Content Include="Views\tbl_status\Edit.cshtml" />
+    <Content Include="Views\tbl_status\Index.cshtml" />
+    <Content Include="Views\tbl_vehicle\Create.cshtml" />
+    <Content Include="Views\tbl_vehicle\Delete.cshtml" />
+    <Content Include="Views\tbl_vehicle\Details.cshtml" />
+    <Content Include="Views\tbl_vehicle\Edit.cshtml" />
+    <Content Include="Views\tbl_vehicle\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

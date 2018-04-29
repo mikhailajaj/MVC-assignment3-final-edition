@@ -1,0 +1,50 @@
+﻿@model MVC_assignment3_final_edition.Models.tbl_vehicle
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>tbl_vehicle</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.make)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.make)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.model)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.model)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.tbl_employee.employee_status)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tbl_employee.employee_status)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.plateNumber }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

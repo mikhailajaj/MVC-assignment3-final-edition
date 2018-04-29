@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MVC_assignment3_final_edition.Models.tbl_vehicle>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.make)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_employee.employee_status)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.make)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_employee.employee_status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.plateNumber }) |
+                @Html.ActionLink("Details", "Details", new { id=item.plateNumber }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.plateNumber })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

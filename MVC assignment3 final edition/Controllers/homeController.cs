@@ -9,6 +9,7 @@ namespace MVC_assignment3_final_edition.Controllers
 {
     public class homeController : Controller
     {
+        //lol
         // GET: home
         const string NL = "<br/>";
         const string SPACES = "&nbsp;&nbsp;&nbsp;&nbsp;";
