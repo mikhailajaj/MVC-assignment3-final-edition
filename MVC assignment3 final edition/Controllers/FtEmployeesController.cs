@@ -14,9 +14,10 @@ namespace MVC_assignment3_final_edition.Controllers
     {
         private db_employeesEntities1 db = new db_employeesEntities1();
         // GET: FtEmployees
+        // this a dimo
         public ActionResult Index()
         {
-
+            var x = "hello, world";
             return View(db.FtEmployees.ToList());
         }
 
